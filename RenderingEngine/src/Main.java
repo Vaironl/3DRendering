@@ -7,5 +7,5 @@ public class Main {
 
 		new WindowFrame(WIDTH, HEIGHT);
 	}
-
+//this is a comment
 }
