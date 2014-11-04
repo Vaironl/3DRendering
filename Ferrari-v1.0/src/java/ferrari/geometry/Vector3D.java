@@ -1,45 +1,21 @@
 package ferrari.geometry;
 
-public class Vector3D {
+public class Vector3D
+{
+	public float x;
+	public float y;
+	public float z;
 
-	private float x, y, z;
-
-	public Vector3D(float initX, float initY, float initZ) {
-		x = initX;
-		y = initY;
-		z = initZ;
-	}
-
-	public float getX() {
-		return x;
-	}
-
-	public void setX(float x) {
+	public Vector3D(float x, float y, float z)
+	{
 		this.x = x;
-	}
-
-	public float getY() {
-		return y;
-	}
-
-	public void setY(float y) {
 		this.y = y;
-	}
-
-	public float getZ() {
-		return z;
-	}
-
-	public void setZ(float z) {
 		this.z = z;
 	}
-
-	public double DotProduct(Vector3D vector) {
-		return 0.0f;
+	
+	@Override
+	public String toString()
+	{
+		return "<" + x, ", " + y + ", " + z + ">";
 	}
-
-	public double CrossProduct(Vector3D vector) {
-		return 0.0f;
-	}
-
 }
