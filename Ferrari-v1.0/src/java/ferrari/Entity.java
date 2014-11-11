@@ -1,21 +1,23 @@
 package ferrari;
 
+import ferrari.geometry.Triangle3D;
+
 public class Entity
 {
-	private Triangle3D[] polygons;
+	private Triangle3D[] mesh;
 	
-	public Entity(Triangle[] poly)
+	public Entity(Triangle3D[] mesh)
 	{
-		setPolygons(poly);
+		setMesh(mesh);
 	}
 	
-	public Triangle3D[] getPolygons()
+	public Triangle3D[] getMesh()
 	{
-		return polygons;
+		return mesh;
 	}
 	
-	public void setPolygons(Triangle3D[] poly)
+	public void setMesh(Triangle3D[] mesh)
 	{
-		polygons = poly;
+		this.mesh = mesh;
 	}
 }
