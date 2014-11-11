@@ -1,5 +1,7 @@
 package ferrari;
 
+import java.util.ArrayList;
+
 public class Scene
 {
 	private ArrayList<Entity> entities;
@@ -9,14 +11,14 @@ public class Scene
 		new ArrayList<Entity>();
 	}
 	
-	public Entity[] getEntities()
+	public ArrayList<Entity> getEntities()
 	{
-		return entites.toArray();
+		return entities;
 	}
 	
-	public void setEntities(ArrayList<Entity> ent)
+	public void setEntities(ArrayList<Entities> ents)
 	{
-		entities = ent;
+		entities = ents;
 	}
 	
 	public void add(Entity ent)
@@ -26,6 +28,11 @@ public class Scene
 	
 	public void remove(Entity ent)
 	{
-		entities.remove(ent);
+		entites.remove(ent);
+	}
+	
+	public void clear()
+	{
+		entities.clear();
 	}
 }
