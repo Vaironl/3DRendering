@@ -19,7 +19,7 @@ public class Point3D
 		float dy = other.y - this.y;
 		float dz = other.z - this.z;
 		
-		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+		return Math.sqrt(dx*dx + dy*dy + dz*dz);
 	}
 	
 	public Vector3D vectorTo(Point3D other)
