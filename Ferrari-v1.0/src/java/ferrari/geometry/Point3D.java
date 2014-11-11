@@ -13,6 +13,22 @@ public class Point3D
 		this.z = z;
 	}
 	
+	public double distanceTo(Point3D other)
+	{
+		float dx = other.x - this.x;
+		float dy = other.y - this.y;
+		float dz = other.z - this.z;
+		
+		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+	}
+	
+	public Vector3D vectorTo(Point3D other)
+	{
+		return new Vector3D(other.x - this.x,
+				    other.y - this.y,
+				    other.z - this.z);
+	}
+	
 	@Override
 	public String toString()
 	{
