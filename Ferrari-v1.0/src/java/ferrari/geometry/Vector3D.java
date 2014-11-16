@@ -44,6 +44,6 @@ public class Vector3D
 	@Override
 	public String toString()
 	{
-		return "<" + x, ", " + y + ", " + z + ">";
+		return "<" + x + ", " + y + ", " + z + ">";
 	}
 }
