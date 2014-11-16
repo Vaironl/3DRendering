@@ -3,39 +3,32 @@ package ferrari;
 import ferrari.geometry.Point3D;
 import ferrari.geometry.Vector3D;
 
-public class Camera
-{
+public class Camera {
 	private Point3D position;
 	private Vector3D orientation;
-	
-	public Camera(Point3D pos, Vector3D ori)
-	{
+
+	public Camera(Point3D pos, Vector3D ori) {
 		setPosition(pos);
 		setOrientation(ori);
 	}
-	
-	public Camera()
-	{
+
+	public Camera() {
 		this(new Point3D(0, 0, 0), new Vector3D(0, 0, 1));
 	}
-	
-	public Point3D getPosition()
-	{
+
+	public Point3D getPosition() {
 		return position;
 	}
-	
-	public Vector3D getOrientation()
-	{
+
+	public Vector3D getOrientation() {
 		return orientation;
 	}
-	
-	public void setPosition(Point3D pos)
-	{
+
+	public void setPosition(Point3D pos) {
 		position = pos;
 	}
-	
-	public void setOrientation(Vector3D ori)
-	{
+
+	public void setOrientation(Vector3D ori) {
 		orientation = ori;
 	}
 }
