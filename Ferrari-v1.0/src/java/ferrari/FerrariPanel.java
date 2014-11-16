@@ -1,50 +1,57 @@
 package ferrari;
 
 import javax.swing.JPanel;
-import java.awt.Graphics;
 
-public class FerrariPanel extends JPanel
-{
+import ferrari.geometry.Point3D;
+import ferrari.loader.ModelLoader;
+
+import java.awt.Graphics;
+import java.io.File;
+import java.util.ArrayList;
+
+public class FerrariPanel extends JPanel {
 	private Scene scene;
 	private Camera camera;
-	
-	public FerrariPanel()
-	{
+	private ModelLoader model;
+
+	private ArrayList<Point3D> vertices = new ArrayList<>();
+
+	public FerrariPanel() {
 		super();
+
+		File object = new File("src\\teapot.obj.txt");
+
+		model = new ModelLoader(object);
+
+		vertices = model.getVertices();
+
 	}
-	
-	public FerrariPanel(Scene scn, Camera cam)
-	{
+
+	public FerrariPanel(Scene scene, Camera camera) {
 		this();
-		setScene(scn);
-		setCamera(cam);
+		setScene(scene);
+		setCamera(camera);
 	}
-	
-	public Scene getScene()
-	{
+
+	public Scene getScene() {
 		return scene;
 	}
-	
-	public Camera getCamera()
-	{
+
+	public Camera getCamera() {
 		return camera;
 	}
-	
-	public void setScene(Scene scn)
-	{
-		scene = scn;
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
 	}
-	
-	public void setCamera(Camera cam)
-	{
-		camera = cam;
+
+	public void setCamera(Camera camera) {
+		this.camera = camera;
 	}
-	
+
 	@Override
-	protected void paintComponent(Graphics g)
-	{
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		//Here is where the magic will happen.
+
 	}
 }
