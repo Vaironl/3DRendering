@@ -1,82 +1,58 @@
 package ferrari.loader;
 
+import ferrari.Entity;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 import ferrari.geometry.Point3D;
+import ferrari.geometry.Triangle3D;
 
-public class ModelLoader {
-	private ArrayList<Point3D> vertices = new ArrayList<Point3D>();
-	private ArrayList<Point3D> faces = new ArrayList<Point3D>();
-
-	public ModelLoader(File file) {
-
-		parseFile(file);
-	}
-
-	public ArrayList<Point3D> getVertices() {
-		return vertices;
-	}
-
-	public ArrayList<Point3D> getFaces() {
-		return faces;
-	}
-
-	private void parseFile(File file) {
-		Scanner fileScanner = null;
-
-		try {
-			fileScanner = new Scanner(file);
-
-			int vertexCount = 0;
-			int faceCount = 0;
-
-			while (fileScanner.hasNextLine()) {
-				String line = fileScanner.nextLine();
-
-				// number of verticies
-				if (line.length() > 1) {
-					if (line.charAt(0) == 'v' && line.charAt(1) == ' ') {
-
-						String v[] = line.substring(2, line.length())
-								.split(" ");
-
-						float x = Float.valueOf(v[0]);
-						float y = Float.valueOf(v[1]);
-						float z = Float.valueOf(v[2]);
-
-						vertices.add(new Point3D(x, y, z));
-
-						vertexCount++;
-					}
-
-					// number of faces
-					if (line.charAt(0) == 'f' && line.charAt(1) == ' ') {
-
-						String v[] = line.substring(2, line.length())
-								.split(" ");
-
-						float x = Float.valueOf(v[0]);
-						float y = Float.valueOf(v[1]);
-						float z = Float.valueOf(v[2]);
-
-						faces.add(new Point3D(x, y, z));
-
-						faceCount++;
-					}
-				}
-
-			}
-
-			System.out.println("vertices: " + vertexCount);
-			System.out.println("Face count: " + faceCount);
-
-		} catch (FileNotFoundException e) {
-			System.out.println("Error parsing the .obj file");
-			e.printStackTrace();
-		}
-
-	}
+public class ModelLoader
+{
+	public static Entity load(File objFile)
+	{
+		Scanner scanner = new Scanner(file);
+		
+		ArrayList<Point3D> vertices = new ArrayList<Point3D>();
+		ArrayList<Triangle3D> faces = new ArrayList<Triangle3D>();
+   
+   		while (scanner.hasNextLine())
+   		{
+   			String line = scanner.nextLine();
+   			
+         		if (line.startsWith("v "))
+         		{
+         			String[] coordinates = line.split(' ');
+            			
+            			float x = Float.parseFloat(coodinates[1]);
+            			float y = Float.parseFloat(coodinates[2]);
+         			float z = Float.parseFloat(coodinates[3]);
+            
+         			vertices.add(new Point3D(x, y, z));
+         		}
+         
+         		if (line.startsWith("f "))
+         		{
+            			String[] vertIndex = line.split(' ');
+            
+            			for (String s : vertIndex)
+            			{
+               				if (s.contains("/"))
+                  				s = s.substring(0, s.indexOf("/"));
+            			}
+            
+            			int indexA = Integer.parseInt(vertIndex[1]) - 1;
+            			int indexB = Integer.parseInt(vertIndex[2]) - 1;
+            			int indexC = Integer.parseInt(vertIndex[3]) - 1;
+            
+            			faces.add(new Triangle(vertices.get(indexA),
+                                   		       vertices.get(indexB),
+                                  		       vertices.get(indexC)));
+         		}
+      		}
+      
+      		Triangle3D[] mesh;
+      
+      		return new Entity(faces.toArray(mesh));    
+   	}
 }
