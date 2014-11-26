@@ -33,21 +33,19 @@ public class ModelLoader
          
          		if (line.startsWith("f "))
          		{
-            			String[] vertIndex = line.split(' ');
-            
-            			for (String s : vertIndex)
-            			{
-               				if (s.contains("/"))
-                  				s = s.substring(0, s.indexOf("/"));
-            			}
-            
-            			int indexA = Integer.parseInt(vertIndex[1]) - 1;
-            			int indexB = Integer.parseInt(vertIndex[2]) - 1;
-            			int indexC = Integer.parseInt(vertIndex[3]) - 1;
-            
-            			faces.add(new Triangle(vertices.get(indexA),
-                                   		       vertices.get(indexB),
-                                  		       vertices.get(indexC)));
+            			String[] vertexAttributes = line.split(' ');
+            			
+            			String[] aAttributes = vertexAttributes[1].split('/');
+            			String[] bAttributes = vertexAttributes[2].split('/');
+            			String[] cAttributes = vertexAttributes[3].split('/');
+            			
+            			int aCoordinateIndex = Integer.parseInt(aAttributes[0]) - 1;
+            			int bCoordinateIndex = Integer.parseInt(bAttributes[0]) - 1;
+            			int cCoordinateIndex = Integer.parseInt(cAttributes[0]) - 1;
+            			
+            			faces.add(new Triangle3D(vertices.get(aCoordinateIndex),
+            						 vertices.get(bCoordinateIndex),
+            						 vertices.get(cCoordinateIndex)));
          		}
       		}
       
